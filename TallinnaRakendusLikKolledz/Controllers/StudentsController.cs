@@ -16,7 +16,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Students.ToListAsync());
+            return View();
         }
         public IActionResult Create()
         {
@@ -72,6 +72,24 @@ namespace TallinnaRakendusLikKolledz.Controllers
                 return NotFound();
             }
             return View(student);
+        }
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit([Bind("ID,FirstName,LastName,EnrollmentDate")] Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Students.Add(student);
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            return View();
         }
     }
 }  
