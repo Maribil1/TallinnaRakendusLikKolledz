@@ -1,0 +1,67 @@
+﻿@model TallinnaRakendusLikKolledz.Models.Student
+@{
+	ViewData["Title"] = "Details";
+
+}
+<div>
+    <h1>Details</h1>
+    <h4>Student</h4>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(Model => Model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(Model => Model.LastName)
+        </dd>
+     
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.EnrollmentDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(Model => Model.EnrollmentDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(Model => Model.Birthday)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(Model => Model.Birthday)
+        </dd>
+      
+
+    </dl>
+    @if (Model.Enrollments != null)
+    {
+        foreach (var courseEnrollment in Model.Enrollments)
+        {
+            <dl class="row">
+                <dd class="col-sm-10">@(courseEnrollment)</dd>
+            </dl>
+        }
+    }
+    @if (Model.Gender != null)
+    {
+        @Model.Gender
+        ;
+    }
+    @if (Model.Age != null)
+    {
+        @Model.Age
+        ;
+    }
+
+
+
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+    
+   
+</div>

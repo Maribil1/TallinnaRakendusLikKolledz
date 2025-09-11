@@ -1,4 +1,4 @@
-﻿﻿@model TallinnaRakendusLikKolledz.Models.Student
+﻿@model TallinnaRakendusLikKolledz.Models.Student
 
 @{
 	ViewData["Title"] = "Delete Student";
@@ -7,7 +7,7 @@
 
 
 <h1>Kustuta õpilane</h1>
-<h3>Kas oled kindel, et tahad õpilast @Model.FirsrName @Model.LastName eemaldada?</h3>
+<h3>Kas oled kindel, et tahad õpilast @Model.FirstName @Model.LastName eemaldada?</h3>
 <div>
 
 	<h4>Õpilane @Model.FirstName @Model.LastName</h4>
@@ -38,14 +38,14 @@
 	{
 		@Model.Gender;
 	}
-	@if (Model.EnrollmentStatus != null)
+	@if (Model.Age != null)
 	{		
-		@Model.EnrollmentStatus;
+		@Model.Age;
 	}
 </div>
 
 <form asp-action="Delete">
-	<input type="hidden" asp-for="Id" />
+	<input type="hidden" asp-for="ID" />
 	<input type="submit" value="Delete" class="btn btn-danger" /> | <a asp-action="Index" class="btn btn-primary" style="margin-right:5px">Back</a>
 </form>
 

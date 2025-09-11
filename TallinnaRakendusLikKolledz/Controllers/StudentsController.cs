@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using TallinnaRakendusLikKolledz.Data;
+using TallinnaRakendusLikKolledz.Models;
 
 
 
@@ -13,7 +16,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View(await_context.Students.ToListAsync());
+            return View(await _context.Students.ToListAsync());
         }
         public IActionResult Create()
         {
@@ -26,7 +29,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
         {
           if (ModelState.IsValid)
           {
-                _contex.Students.Add(student);
+                _context.Students.Add(student);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
           }
@@ -40,7 +43,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
             {
                 return NotFound();
             }
-            var student = await _context.Students.FirstOrDefaultAsync(x => x.Id == id);
+            var student = await _context.Students.FirstOrDefaultAsync(x => x.ID == id);
             if (student == null)
             {
                 return NotFound();
@@ -56,6 +59,19 @@ namespace TallinnaRakendusLikKolledz.Controllers
             _context.Students.Remove(student);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var student = await _context.Students.FirstOrDefaultAsync(x => x.ID == id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return View(student);
         }
     }
 }  
