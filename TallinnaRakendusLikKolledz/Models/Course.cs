@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace TallinnaRakendusLikKolledz.Models
 {
-    public class Course : Controller
+    public class Course
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        [Key]
+        public int CourseId { get; set; }
+        public string Title { get; set; }
+        public int Credits { get; set; }
+
+        public ICollection<Enrollment> Enrollments { get; set; }
     }
 }
