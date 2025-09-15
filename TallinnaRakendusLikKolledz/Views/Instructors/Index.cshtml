@@ -1,0 +1,42 @@
+﻿@model TallinnaRakendusLikKolledz.Models.InstructorIndexData
+@{
+	ViewData["Title"] = "Õpetajad";
+}
+<h2>Õpetajad</h2>
+<p>
+	<a asp-action="Create">Lisa õpetaja</a>
+</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Perekonnanimi</th>
+			<th>Eesnimi</th>
+			<th>Töölevõtukuupäev</th>
+			<th>Kabinet</th>
+			<th>Kursused</th>
+			<th>Vanus</th>
+			<th>Sugu🚻</th>
+		</tr>
+	</thead>
+	<tbody>
+	  @foreach(var instructor in Model.Instructors)
+	    {
+			string selectedRow = "";
+			if(instructor.ID==(int?) ViewData["InstructorID"])
+			{
+				selectedRow = "table-sucess";
+			}
+			<tr class="@selectedRow">
+				<td>@Html.DisplayFor(modelItem => instructor.LastName)</td>
+				<td>@Html.DisplayFor(modelItem => instructor.FirstName)</td>
+				<td>@Html.DisplayFor(modelItem => instructor.HireDate)</td>
+			</tr>
+
+
+		}
+
+
+
+	</tbody>
+
+</table>
