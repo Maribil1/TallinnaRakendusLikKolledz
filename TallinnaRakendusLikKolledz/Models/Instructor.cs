@@ -28,7 +28,7 @@ namespace TallinnaRakendusLikKolledz.Models
         public DateTime HireDate { get; set; }
 
         public ICollection<CourseAssigment>? CourseAssigments { get; set; }
-        public ICollection<OfficeAssigment>? OfficeAssigments { get; set; }
+        public OfficeAssigment? OfficeAssigments { get; set; }
         
         [Display(Name = "Vanus")]
         public int? Age { get; set; }

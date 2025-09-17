@@ -11,4 +11,5 @@ namespace TallinnaRakendusLikKolledz.Models
         [Display(Name ="Kabinet")]
         public string Location {  get; set; }
     }
+    
 }
