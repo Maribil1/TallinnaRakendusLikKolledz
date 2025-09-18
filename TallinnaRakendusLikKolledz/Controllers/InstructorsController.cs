@@ -23,7 +23,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
 
         }
         [HttpPost]
-        public IActionResult Ćreate() 
+        public IActionResult Create() 
         { 
             var instructor=new Instructor();
             instructor.CourseAssigments=new List<CourseAssigment>();
@@ -33,7 +33,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Instructor instructor, string selectedCourses)
         {
-            if (selectedCourses == null)
+            if (selectedCourses != null)
             {
                 instructor.CourseAssigments = new List<CourseAssigment>();
                 foreach (var course in selectedCourses)
@@ -49,18 +49,20 @@ namespace TallinnaRakendusLikKolledz.Controllers
 
                 }
             }
+            ModelState.Remove("selectedCourses");
             if (ModelState.IsValid)
             {
                 _context.Add(instructor);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            PopulateAssignedCourseData(instructor);
+            //PopulateAssignedCourseData(instructor);
             return View(instructor);
         }
         private void PopulateAssignedCourseData(Instructor instructor)
         {
             var allCourses=_context.Courses;
+
             var instructorCourses=new HashSet<int>(instructor.CourseAssigments.Select(c => c.CourseID));
             //valime kursused kus courseid on õpetajal olemas
             var vm= new List<AssignedCourseData>();
