@@ -102,5 +102,22 @@ namespace TallinnaRakendusLikKolledz.Controllers
             }
             ViewData["Courses"]=vm;
         }
-    }
+       
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var instructor = await _context.Instructors.FirstOrDefaultAsync(x => x.ID == id);
+            if (instructor == null)
+            {
+                return NotFound();
+            }
+            return View(instructor);
+        }
+
+    } 
+     
+
 }
