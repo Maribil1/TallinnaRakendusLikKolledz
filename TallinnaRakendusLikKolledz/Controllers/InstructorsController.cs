@@ -103,6 +103,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
             ViewData["Courses"]=vm;
         }
        
+        
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -122,7 +123,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
             {
                 return NotFound();
             }
-            var instructor = await _context.Students.FirstOrDefaultAsync(x => x.ID == id);
+            var instructor = await _context.Instructors.FirstOrDefaultAsync(x => x.ID == id);
             if (instructor == null)
             {
                 return NotFound();

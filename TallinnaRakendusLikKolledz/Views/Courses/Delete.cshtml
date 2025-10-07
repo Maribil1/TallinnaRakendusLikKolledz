@@ -1,0 +1,34 @@
+﻿@model TallinnaRakendusLikKolledz.Models.Course
+@{
+	ViewData["Title"] = "Kustuta kursus";
+}
+
+
+
+<p>
+	<h3>Kustuta osakond:</h3>
+</p>
+<div>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2">@Html.DisplayNameFor(model => model.Title)</dt>
+		<dt class="col-sm-2">@Html.DisplayFor(model => model.Title)</dt>
+		<dt class="col-sm-2">@Html.DisplayNameFor(model => model.Credits)</dt>
+		<dt class="col-sm-2">@Html.DisplayFor(model => model.Credits)</dt>
+		<dt class="col-sm-2">@Html.DisplayNameFor(model => model.CourseAssigments)</dt>
+		<dt class="col-sm-2">@Html.DisplayFor(model => model.CourseAssigments)</dt>
+		<dt class="col-sm-2">@Html.DisplayNameFor(model => model.Enrollments)</dt>
+		<dt class="col-sm-2">@Html.DisplayFor(model => model.Enrollments)</dt>
+		<dt class="col-sm-2">@Html.DisplayNameFor(model => model.Department)</dt>
+		<dt class="col-sm-2">@Html.DisplayFor(model => model.Department)</dt>
+		<dt class="col-sm-2">@Html.DisplayNameFor(model => model.DepartmentID)</dt>
+		<dt class="col-sm-2">@Html.DisplayFor(model => model.DepartmentID)</dt>
+
+	</dl>
+	<form asp-action="Delete">
+		<input type="hidden" asp-for="CourseId" />
+		<input type="submit" value="Kustuta" class="btn btn-danger" /> | <a asp-action="Index">Tühista</a>|
+		<a asp-action="Details">Details</a>
+	</form>
+
+</div>
