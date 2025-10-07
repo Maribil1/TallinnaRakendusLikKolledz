@@ -17,8 +17,8 @@ namespace TallinnaRakendusLikKolledz.Controllers
         public async Task<IActionResult> Index()
         {
             var schoolContext = _context.Departments.Include(d => d.Administrator);
-            //return View(await schoolContext.ToListAsync());
-            return View("Index");
+            return View(await schoolContext.ToListAsync());
+            
 
         }
         [HttpGet]

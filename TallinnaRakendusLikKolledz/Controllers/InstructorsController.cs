@@ -15,10 +15,10 @@ namespace TallinnaRakendusLikKolledz.Controllers
         public async Task <IActionResult> Index(int? id,int? courseId) 
         {
             var vm = new InstructorIndexData();
-           /* vm.Instructors = await _context.Instructors
+            vm.Instructors = await _context.Instructors
                 .Include(i => i.OfficeAssigments)
                 .Include(i => i.CourseAssigments)
-                .ToListAsync();*/
+                .ToListAsync();
             return View(vm);
 
         }
