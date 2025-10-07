@@ -16,8 +16,9 @@ namespace TallinnaRakendusLikKolledz.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _context.Students.ToListAsync());
         }
+        [HttpGet]
         public IActionResult Create()
         {
             return View();

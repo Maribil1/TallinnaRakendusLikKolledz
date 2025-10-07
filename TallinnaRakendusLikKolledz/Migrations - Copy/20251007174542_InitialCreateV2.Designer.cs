@@ -12,8 +12,8 @@ using TallinnaRakendusLikKolledz.Data;
 namespace TallinnaRakendusLikKolledz.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20250925083057_newmigration1")]
-    partial class newmigration1
+    [Migration("20251007174542_InitialCreateV2")]
+    partial class InitialCreateV2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -224,15 +224,17 @@ namespace TallinnaRakendusLikKolledz.Migrations
 
             modelBuilder.Entity("TallinnaRakendusLikKolledz.Models.Course", b =>
                 {
-                    b.HasOne("TallinnaRakendusLikKolledz.Models.Department", null)
+                    b.HasOne("TallinnaRakendusLikKolledz.Models.Department", "Department")
                         .WithMany("Courses")
                         .HasForeignKey("DepartmentID");
+
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("TallinnaRakendusLikKolledz.Models.CourseAssigment", b =>
                 {
                     b.HasOne("TallinnaRakendusLikKolledz.Models.Course", "Course")
-                        .WithMany()
+                        .WithMany("CourseAssigments")
                         .HasForeignKey("CourseID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -289,6 +291,8 @@ namespace TallinnaRakendusLikKolledz.Migrations
 
             modelBuilder.Entity("TallinnaRakendusLikKolledz.Models.Course", b =>
                 {
+                    b.Navigation("CourseAssigments");
+
                     b.Navigation("Enrollments");
                 });
 
