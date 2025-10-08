@@ -44,7 +44,8 @@ namespace TallinnaRakendusLikKolledz.Controllers
         public IActionResult Edit()
         {
             PopulateDepartmentsDropDownList();
-            return View();
+            return RedirectToAction("Create");
+            
 
         }
         [HttpPost]
@@ -108,22 +109,11 @@ namespace TallinnaRakendusLikKolledz.Controllers
             ViewBag.DepartmentID =new SelectList(departmentQuery.AsNoTracking(), "DepartmentID", "Name", selectedDepartment);
         }
         [HttpGet]
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details()
         {
-            if (id == null || _context.Courses == null)
-            {
-                return NotFound();
-
-            }
-            var courses = await _context.Courses
-                .Include(c => c.Department)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.CourseId == id);
-            if (courses == null)
-            {
-                return NotFound();
-            }
-            return View(courses);
+            PopulateDepartmentsDropDownList();
+            return RedirectToAction("Delete");
+           
 
         }
 

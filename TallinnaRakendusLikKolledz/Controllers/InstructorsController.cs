@@ -22,7 +22,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
             return View(vm);
 
         }
-        [HttpPost]
+        [HttpGet]
         public IActionResult Create() 
         { 
             var instructor=new Instructor();
@@ -56,8 +56,8 @@ namespace TallinnaRakendusLikKolledz.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            //PopulateAssignedCourseData(instructor);
-            return View(instructor);
+            //PopulateAssignedCourseData(instructor);//
+            return View();
         }
         [HttpGet]
         public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)

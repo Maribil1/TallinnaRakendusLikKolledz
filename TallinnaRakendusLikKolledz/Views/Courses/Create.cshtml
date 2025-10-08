@@ -9,11 +9,7 @@
 	<div class="col-md-4">
 		<form asp-action="Create">
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-			<div>
-				<label asp-for="CourseId" class="control-label"></label>
-				<input asp-for="CourseId" class="form-control" />
-				<span asp-validation-for="CourseId" class="text-danger"></span>
-			</div>
+		
 			<div>
 				<label asp-for="Title" class="control-label"></label>
 				<input asp-for="Title" class="form-control" />
@@ -32,7 +28,7 @@
 				<span asp-validation-for="DepartmentID" class="text-danger"></span>
 			</div>
 			<div class="form-group">
-				<input type="submit" value="Tee uus" class="btn btn-primary" /> |<a asp-action="Edit">Edit</a>
+				<input type="submit" value="Tee uus" class="btn btn-primary" /> | <a asp-action="Index">Tühista</a>
 			</div>
 		</form>
 	</div>
