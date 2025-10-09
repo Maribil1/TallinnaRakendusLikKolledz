@@ -85,7 +85,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Students.Add(student);
+                _context.Students.Update(student);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
