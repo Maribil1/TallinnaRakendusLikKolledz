@@ -1,0 +1,65 @@
+﻿@model IEnumerable<TallinnaRakendusLikKolledz.Models.Delinquent>
+@{
+	ViewData["Title"] = "Delinquents";
+}
+<h2>Delinquents</h2>
+<p>
+	<a asp-action="Create">Tee uus</a>
+</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>@Html.DisplayNameFor(model => model.FirstName)</th>
+			<th>@Html.DisplayNameFor(model => model.LastName)</th>
+			<th>@Html.DisplayNameFor(model => model.Violation)</th>
+			<th>@Html.DisplayNameFor(model => model.Position)</th>
+			<th>@Html.DisplayNameFor(model => model.Solved)</th>
+			<th>@Html.DisplayNameFor(model => model.Solving)</th>
+			<th>Tööriistad</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var delinquent in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => delinquent.FirstName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => delinquent.LastName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => delinquent.Violation)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => delinquent.Position)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => delinquent.Solved)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => delinquent.Solving)
+				</td>
+					<td>
+					@Html.DisplayFor(modelItem => delinquent.Dropped)
+					</td>
+				<td>
+					<a asp-action="Delete" asp-route-id="@delinquent.Id">Kustuta</a>
+					<a asp-action="Edit" asp-route-id="@delinquent.Id">Muuda</a>
+					<a asp-action="Details" asp-route-id="@delinquent.Id">Detailid</a>
+				</td>
+
+
+
+			</tr>
+
+
+
+
+		}
+
+
+
+	</tbody>
+</table>
+
