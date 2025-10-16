@@ -19,11 +19,11 @@ namespace TallinnaRakendusLikKolledz.Models
         public string LastName { get; set; }
         public Violations? Violation {  get; set; }
         public Job? Position { get; set; }
-        public Boolean? InCourt { get; set; }
-        public Boolean? Solved { get; set; }
-        public Boolean? Dropped { get; set; }
-        public Boolean? Solving { get; set; }
-        public Boolean? PoliceInvolved {  get; set; }
+        public string? InCourt { get; set; }
+        public string? Solved { get; set; }
+        public string? Dropped { get; set; }
+        public string? Solving { get; set; }
+        public string? PoliceInvolved {  get; set; }
 
     }
 }

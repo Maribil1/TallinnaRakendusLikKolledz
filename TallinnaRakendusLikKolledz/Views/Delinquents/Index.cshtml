@@ -15,11 +15,12 @@
 			<th>@Html.DisplayNameFor(model => model.Position)</th>
 			<th>@Html.DisplayNameFor(model => model.Solved)</th>
 			<th>@Html.DisplayNameFor(model => model.Solving)</th>
+			<th>Tööriistad</th>
 			
 		</tr>
 	</thead>
 	<tbody>
-		@foreach (var delinquent in Model)
+   		@foreach (var delinquent in Model)
 		{
 			<tr>
 				<td>
@@ -40,26 +41,24 @@
 				<td>
 					@Html.DisplayFor(modelItem => delinquent.Solving)
 				</td>
-					<td>
+				<td>
 					@Html.DisplayFor(modelItem => delinquent.Dropped)
-					</td>
+				</td>
 				<td>
 					<a asp-action="Delete" asp-route-id="@delinquent.Id">Kustuta</a>
 					<a asp-action="Edit" asp-route-id="@delinquent.Id">Muuda</a>
 					<a asp-action="Details" asp-route-id="@delinquent.Id">Detailid</a>
 				</td>
 
-
-
 			</tr>
-
-
-
-
 		}
+		
+			
+		
 
 
 
 	</tbody>
+	
 </table>
 
