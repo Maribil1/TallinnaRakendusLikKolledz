@@ -72,6 +72,26 @@ namespace TallinnaRakendusLikKolledz.Controllers
             }
             return View(delinquents);
         }
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Delinquent delinquent)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Delinquents.Update(delinquent);
+                await _context.SaveChangesAsync();
+
+
+            }
+            return RedirectToAction("Index");
+
+        }
+
     }
        
 }

@@ -74,6 +74,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
             }
             return View(student);
         }
+        [HttpGet]
         public IActionResult Edit()
         {
             return View();
