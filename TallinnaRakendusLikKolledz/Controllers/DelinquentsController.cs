@@ -59,6 +59,19 @@ namespace TallinnaRakendusLikKolledz.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var delinquents = await _context.Delinquents.FirstOrDefaultAsync(x => x.Id == id);
+            if (delinquents == null)
+            {
+                return NotFound();
+            }
+            return View(delinquents);
+        }
     }
        
 }
