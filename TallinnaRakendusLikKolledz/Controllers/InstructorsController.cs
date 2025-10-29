@@ -131,13 +131,34 @@ namespace TallinnaRakendusLikKolledz.Controllers
             return View(instructor);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(Instructor instructor, string selectedCourses)
         {
-            var instructor = await _context.Instructors.FindAsync(id);
-            _context.Instructors.Update(instructor);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+			if (selectedCourses != null)
+			{
+				instructor.CourseAssigments = new List<CourseAssigment>();
+				foreach (var course in selectedCourses)
+				{
+					var courseToAdd = new CourseAssigment
+					{
+						InstructorID = instructor.ID,
+						CourseID = course
+					};
+					instructor.CourseAssigments.Add(courseToAdd);
+
+
+
+				}
+			}
+			ModelState.Remove("selectedCourses");
+			if (ModelState.IsValid)
+			{
+				_context.Update(instructor);
+				await _context.SaveChangesAsync();
+				return RedirectToAction("Index");
+			}
+			//PopulateAssignedCourseData(instructor);//
+			return View(instructor);
+		}
     } 
      
 
