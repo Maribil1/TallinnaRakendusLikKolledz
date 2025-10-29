@@ -57,7 +57,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
                 return RedirectToAction("Index");
             }
             //PopulateAssignedCourseData(instructor);//
-            return View();
+            return View(instructor);
         }
         [HttpGet]
         public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
