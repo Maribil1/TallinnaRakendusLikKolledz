@@ -46,6 +46,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
+            ViewData["action"] = "Delete";
             if (id == null)
             {
                 return NotFound();
@@ -63,6 +64,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(Department department)
         {
+            ViewData["action"]= "Delete";
             if (await _context.Departments.AnyAsync(m => m.DepartmentID == department.DepartmentID))
             {
                 _context.Departments.Remove(department);
@@ -102,5 +104,22 @@ namespace TallinnaRakendusLikKolledz.Controllers
             ViewData["InstructorID"] = new SelectList(_context.Instructors, "Id", "FullName", department.InstructorID);
             return RedirectToAction(nameof(Index));
         }
-    }
+		[HttpGet]
+		public async Task<IActionResult> Details(int? id)
+		{
+            ViewData["action"] = "Details";
+			if (id == null)
+			{
+				return NotFound();
+			}
+			var department = await _context.Departments
+				.Include(d => d.Administrator)
+				.FirstOrDefaultAsync(d => d.DepartmentID == id);
+			if (department == null)
+			{
+				return NotFound();
+			}
+			return View("Delete", department);
+		}
+	}
 }

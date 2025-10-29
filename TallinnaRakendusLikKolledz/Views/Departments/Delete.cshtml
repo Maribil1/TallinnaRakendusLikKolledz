@@ -2,33 +2,67 @@
 @{
 	ViewData["Title"] = "Kustuta osakond";
 }
-<h2>@Html.DisplayFor(modelItwm=> Model.Name)</h2>
+@if(ViewBag.action == "Delete")
+{
+	<h2>@Html.DisplayFor(modelItwm => Model.Name)</h2>
 
-<p>
-	<h3>Kustuta osakond:</h3>
-</p>
-<div>
-	<hr />
-	<dl class="row">
-		<dt class="col-sm-2">@Html.DisplayNameFor(model => model.Name)</dt>
-		<dt class="col-sm-2">@Html.DisplayFor(model => model.Name)</dt>
-		<dt class="col-sm-2">@Html.DisplayNameFor(model => model.DepartmentID)</dt>
-		<dt class="col-sm-2">@Html.DisplayFor(model => model.DepartmentID)</dt>
-		<dt class="col-sm-2">@Html.DisplayNameFor(model => model.StaffHired)</dt>
-		<dt class="col-sm-2">@Html.DisplayFor(model => model.StaffHired)</dt>
-		<dt class="col-sm-2">@Html.DisplayNameFor(model => model.Budget)</dt>
-		<dt class="col-sm-2">@Html.DisplayFor(model => model.Budget)</dt>
-		<dt class="col-sm-2">@Html.DisplayNameFor(model => model.InstructorID)</dt>
-		<dt class="col-sm-2">@Html.DisplayFor(model => model.InstructorID)</dt>
-		<dt class="col-sm-2">@Html.DisplayFor(model => model.StartDate)</dt>
-		<dt class="col-sm-2">@Html.DisplayNameFor(model => model.StartDate)</dt>
-		<dt class="col-sm-2">@Html.DisplayNameFor(model => model.Cleaner)</dt>
-		<dt class="col-sm-2">@Html.DisplayFor(model => model.Cleaner)</dt>
-	</dl>
-	<form asp-action="Delete">
-		<input type="hidden" asp-for="DepartmentID" />
-		<input type="hidden" asp-for="RowVersion" />
-		<input type="submit" value="Kustuta" class="btn btn-danger" /> <a asp-action="Index">Tühista</a>
+	<p>
+		<h3>Kustuta osakond:</h3>
+	</p>
+	<div>
+		<hr />
+		<dl class="row">
+			<dt class="col-sm-2">@Html.DisplayNameFor(model => model.Name)</dt>
+			<dt class="col-sm-2">@Html.DisplayFor(model => model.Name)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(model => model.DepartmentID)</dt>
+			<dt class="col-sm-2">@Html.DisplayFor(model => model.DepartmentID)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(model => model.StaffHired)</dt>
+			<dt class="col-sm-2">@Html.DisplayFor(model => model.StaffHired)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(model => model.Budget)</dt>
+			<dt class="col-sm-2">@Html.DisplayFor(model => model.Budget)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(model => model.InstructorID)</dt>
+			<dt class="col-sm-2">@Html.DisplayFor(model => model.InstructorID)</dt>
+			<dt class="col-sm-2">@Html.DisplayFor(model => model.StartDate)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(model => model.StartDate)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(model => model.Cleaner)</dt>
+			<dt class="col-sm-2">@Html.DisplayFor(model => model.Cleaner)</dt>
+		</dl>
+		<form asp-action="Delete">
+			<input type="hidden" asp-for="DepartmentID" />
+			<input type="hidden" asp-for="RowVersion" />
+			<input type="submit" value="Kustuta" class="btn btn-danger" /> <a asp-action="Index">Tühista</a>
 
-	</form>
-</div>
+		</form>
+	</div>
+}
+else
+{
+	<h2>@Html.DisplayFor(modelItwm => Model.Name)</h2>
+
+	<p>
+		
+	</p>
+	<div>
+		<hr />
+		<dl class="row">
+			<dt class="col-sm-2">@Html.DisplayNameFor(model => model.Name)</dt>
+			<dt class="col-sm-2">@Html.DisplayFor(model => model.Name)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(model => model.DepartmentID)</dt>
+			<dt class="col-sm-2">@Html.DisplayFor(model => model.DepartmentID)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(model => model.StaffHired)</dt>
+			<dt class="col-sm-2">@Html.DisplayFor(model => model.StaffHired)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(model => model.Budget)</dt>
+			<dt class="col-sm-2">@Html.DisplayFor(model => model.Budget)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(model => model.InstructorID)</dt>
+			<dt class="col-sm-2">@Html.DisplayFor(model => model.InstructorID)</dt>
+			<dt class="col-sm-2">@Html.DisplayFor(model => model.StartDate)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(model => model.StartDate)</dt>
+			<dt class="col-sm-2">@Html.DisplayNameFor(model => model.Cleaner)</dt>
+			<dt class="col-sm-2">@Html.DisplayFor(model => model.Cleaner)</dt>
+		</dl>
+		<div>
+			<a asp-action="Index">Tühista</a>
+		</div>
+		
+	</div>
+}
