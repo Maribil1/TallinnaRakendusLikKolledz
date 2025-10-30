@@ -81,7 +81,8 @@ namespace TallinnaRakendusLikKolledz.Controllers
 		[HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Courses==null)
+			ViewData["action"] = "Delete";
+			if (id == null || _context.Courses==null)
             { return NotFound(); 
             
             }
@@ -100,7 +101,8 @@ namespace TallinnaRakendusLikKolledz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Courses == null)
+			ViewData["action"] = "Delete";
+			if (_context.Courses == null)
             {
                 return NotFound();
             }
@@ -125,14 +127,24 @@ namespace TallinnaRakendusLikKolledz.Controllers
         
         public async Task< IActionResult> Details(int?id)
         {
-            var courses = await _context.Courses
-               .Include(c => c.Department)
-               .AsNoTracking()
-               .FirstOrDefaultAsync(m => m.CourseId == id);
-            return View("Delete");
+			ViewData["action"] = "Details";
+			if (id == null || _context.Courses == null)
+			{
+				return NotFound();
+
+			}
+			var courses = await _context.Courses
+				.Include(c => c.Department)
+				.AsNoTracking()
+				.FirstOrDefaultAsync(m => m.CourseId == id);
+			if (courses == null)
+			{
+				return NotFound();
+			}
+			return View("Delete", courses);
 
 
-        }
+		}
         
 
     }
