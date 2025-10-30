@@ -22,7 +22,8 @@ namespace TallinnaRakendusLikKolledz.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            PopulateDepartmentsDropDownList();
+			ViewData["action"] = "Create";
+			PopulateDepartmentsDropDownList();
             return View();
         
         }
@@ -30,7 +31,8 @@ namespace TallinnaRakendusLikKolledz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Course course)
         {
-            if (ModelState.IsValid)
+			ViewData["action"] = "Create";
+			if (ModelState.IsValid)
             {
                 _context.Courses.Add(course);
                 await _context.SaveChangesAsync();
@@ -41,16 +43,42 @@ namespace TallinnaRakendusLikKolledz.Controllers
 
         }
         [HttpGet]
-        public IActionResult Edit()
+        public async Task<IActionResult> Edit(int? id)
         {
-            PopulateDepartmentsDropDownList();
-            return View("Create");
-            
-        }
-        
+			ViewData["action"] = "Edit";
+			if (id == null || _context.Courses == null)
+			{
+				return NotFound();
+
+			}
+			var courses = await _context.Courses
+				.Include(c => c.Department)
+				.AsNoTracking()
+				.FirstOrDefaultAsync(m => m.CourseId == id);
+			if (courses == null)
+			{
+				return NotFound();
+			}
+			return View("Create", courses);
+		}
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Edit(Course course)
+		{
+			ViewData["action"] = "Edit";
+			if (ModelState.IsValid)
+			{
+				_context.Courses.Add(course);
+				await _context.SaveChangesAsync();
+				PopulateDepartmentsDropDownList(course.DepartmentID);
+
+			}
+			return RedirectToAction("Index");
+
+		}
 
 
-        [HttpGet]
+		[HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Courses==null)
