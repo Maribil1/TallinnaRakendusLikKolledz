@@ -17,23 +17,23 @@ namespace TallinnaRakendusLikKolledz.Controllers
         public async Task<IActionResult> Index()
         {
             var schoolContext = _context.Departments.Include(d => d.Administrator);
-            return View(await schoolContext.ToListAsync());
+            return View(await _context.Departments.ToListAsync());
 
 
         }
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            ViewData["action"] = "Create";
-            ViewData["InstructorID"] = new SelectList(_context.Instructors, "Id", "FullName");
+            ViewData["test"] = "Create";
+            //ViewData["InstructorID"] = new SelectList(_context.Instructors, "Id", "FullName");
 
-            return View("Create");
+            return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DepartmentID, Name, Budget, StarDate, RowVersion, InstructorID, Cleaner, StaffHired, CloseTime")] Department department)
         {
-			ViewData["action"] = "Create";
+			ViewData["test"] = "Create";
 			if (ModelState.IsValid)
             {
                 _context.Add(department);
@@ -76,7 +76,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
-			ViewData["action"] = "Edit";
+			ViewData["test"] = "Edit";
 			if (id == null)
             {
                 return NotFound();
@@ -94,6 +94,7 @@ namespace TallinnaRakendusLikKolledz.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit([Bind("DepartmentID, Name, Budget, StarDate, RowVersion, InstructorID, Cleaner, StaffHired, CloseTime")] Department department)
         {
+            ViewData["test"] = "Edit";
 
             if (ModelState.IsValid)
             {

@@ -1,8 +1,8 @@
 ﻿@model TallinnaRakendusLikKolledz.Models.Department
 @{
-	ViewData["Title"] = "Dept";
+	ViewData["Title"] = "Create";
 }
-@if(ViewBag.action == "Create")
+@if(ViewBag.test=="Create")
 {
 	<h2>Asuta uus osakond</h2>
 	<hr />
@@ -52,8 +52,9 @@
 
 	</div>
 }
-else 
+else
 {
+
 	<h2>Muuda osakonda</h2>
 	<hr />
 	<div class="row">
