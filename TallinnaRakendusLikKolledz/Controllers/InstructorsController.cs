@@ -104,33 +104,26 @@ namespace TallinnaRakendusLikKolledz.Controllers
         }
        
         
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var instructor = await _context.Instructors.FirstOrDefaultAsync(x => x.ID == id);
-            if (instructor == null)
-            {
-                return NotFound();
-            }
-            return View(instructor);
-        }
+       
+
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
+
             if (id == null)
             {
-                return NotFound();
+                return View();
             }
             var instructor = await _context.Instructors.FirstOrDefaultAsync(x => x.ID == id);
             if (instructor == null)
             {
                 return NotFound();
             }
+            
             return View(instructor);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Instructor instructor, string selectedCourses)
         {
 			if (selectedCourses != null)
@@ -159,6 +152,19 @@ namespace TallinnaRakendusLikKolledz.Controllers
 			//PopulateAssignedCourseData(instructor);//
 			return View(instructor);
 		}
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var instructor = await _context.Instructors.FirstOrDefaultAsync(x => x.ID == id);
+            if (instructor == null)
+            {
+                return NotFound();
+            }
+            return View(instructor);
+        }
     } 
      
 
